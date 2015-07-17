@@ -10,9 +10,6 @@ public class UrlShortener {
 	private Validator validator = new Validator();
 
 	public String generate(final String url) throws InvalidURLException {
-
-		int i = 0;
-
 		validator.validate(url);
 		return limit(DigestUtils.sha1Hex(url));
 	}
