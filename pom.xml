@@ -9,12 +9,13 @@
     <name>yaus</name>
 
     <modules>
-        <module>lib</module>
+        <module>service</module>
+        <module>web</module>
     </modules>
 
     <developers>
         <developer>
-            <id>jdoe</id>
+            <id>raulexposito</id>
             <name>Raúl Expósito</name>
             <url>http://raulexposito.com/</url>
         </developer>
@@ -32,6 +33,8 @@
         <jacoco.plugin.version>0.7.5.201505241946</jacoco.plugin.version>
         <maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
         <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
+        <jetty.maven.plugin.version>9.3.1.v20150714</jetty.maven.plugin.version>
+        <maven.war.plugin.version>2.6</maven.war.plugin.version>
 
         <!-- ::::::::::::::::::::::::::::::::::::::::::::: -->
         <!--                 DEPENDENCIES                  -->
@@ -39,6 +42,12 @@
 
         <!-- Testing -->
         <junit.version>4.12</junit.version>
+
+        <!-- Spring -->
+        <spring-framework.version>4.1.7.RELEASE</spring-framework.version>
+
+        <!-- Servlet -->
+        <servlet.api.version>2.5</servlet.api.version>
 
         <!-- Third party -->
         <commons-codec.version>1.10</commons-codec.version>
@@ -128,6 +137,21 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <!-- Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet.api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- spring framework -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring-framework.version}</version>
             </dependency>
 
             <!-- third party -->
