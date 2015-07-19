@@ -1,6 +1,5 @@
 package com.raulexposito.yaus.shortener;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class ValidatorTest {
@@ -9,22 +8,22 @@ public class ValidatorTest {
 
     @Test
     public void checkHttpURLIsValid() throws InvalidURLException {
-        Assert.assertTrue(validator.validate("http://testingdomain.com"));
+        validator.validate("http://testingdomain.com");
     }
 
     @Test
     public void checkHttpURLWithOneParameterIsValid() throws InvalidURLException {
-        Assert.assertTrue(validator.validate("http://testingdomain.com?param1=value"));
+        validator.validate("http://testingdomain.com?param1=value");
     }
 
     @Test
     public void checkHttpURLWithTwoParametersIsValid() throws InvalidURLException {
-        Assert.assertTrue(validator.validate("http://testingdomain.com?param1=value&param2=value"));
+        validator.validate("http://testingdomain.com?param1=value&param2=value");
     }
 
     @Test
     public void checkHttpsURLIsValid() throws InvalidURLException {
-        Assert.assertTrue(validator.validate("https://testingdomain.com"));
+        validator.validate("https://testingdomain.com");
     }
 
     @Test (expected = InvalidURLException.class)
