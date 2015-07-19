@@ -35,6 +35,7 @@
         <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
         <jetty.maven.plugin.version>9.3.1.v20150714</jetty.maven.plugin.version>
         <maven.war.plugin.version>2.6</maven.war.plugin.version>
+        <rest-assured.version>2.4.1</rest-assured.version>
 
         <!-- ::::::::::::::::::::::::::::::::::::::::::::: -->
         <!--                 DEPENDENCIES                  -->
@@ -136,6 +137,12 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.jayway.restassured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>${rest-assured.version}</version>
                 <scope>test</scope>
             </dependency>
 
