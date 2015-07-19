@@ -18,6 +18,7 @@ Open the next files with a browser:
 
 ## Brief Cheatsheet:
 
-`$ curl -X POST -d url='http://myurl.com' localhost:8080/shorten` -v
+* Short the url `http://myurl.com`
+`$ curl -X POST -d url='http://myurl.com' localhost:8080/shorten -v`
 
 

@@ -25,21 +25,6 @@
                     <scanIntervalSeconds>3</scanIntervalSeconds>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${maven.war.plugin.version}</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                        </manifest>
-                    </archive>
-                    <archiveClasses>true</archiveClasses>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
