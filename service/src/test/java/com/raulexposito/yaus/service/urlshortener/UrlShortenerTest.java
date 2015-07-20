@@ -1,5 +1,7 @@
-package com.raulexposito.yaus.shortener;
+package com.raulexposito.yaus.service.urlshortener;
 
+import com.raulexposito.yaus.service.exception.InvalidURLException;
+import com.raulexposito.yaus.service.urlshortener.UrlShortener;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,8 +20,8 @@ public class UrlShortenerTest {
     }
 
     @Test
-    public void testOsocoDomainURL() throws InvalidURLException {
-        Assert.assertEquals("The (limited) hash of 'http://osoco.es' must be '1f206102'",
+    public void testTestingDomainDomainURL() throws InvalidURLException {
+        Assert.assertEquals("The (limited) hash of 'http://testingdomain.com' must be '7862655d'",
                 "7862655d",
                 urlShortener.generate("http://testingdomain.com"));
     }

@@ -35,7 +35,6 @@
         <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
         <jetty.maven.plugin.version>9.3.1.v20150714</jetty.maven.plugin.version>
         <maven.war.plugin.version>2.6</maven.war.plugin.version>
-        <rest-assured.version>2.4.1</rest-assured.version>
 
         <!-- ::::::::::::::::::::::::::::::::::::::::::::: -->
         <!--                 DEPENDENCIES                  -->
@@ -43,6 +42,8 @@
 
         <!-- Testing -->
         <junit.version>4.12</junit.version>
+        <rest-assured.version>2.4.1</rest-assured.version>
+        <mockito-all.version>1.10.19</mockito-all.version>
 
         <!-- Spring -->
         <spring-framework.version>4.1.7.RELEASE</spring-framework.version>
@@ -53,6 +54,7 @@
         <!-- Third party -->
         <commons-codec.version>1.10</commons-codec.version>
         <commons-validator.version>1.4.1</commons-validator.version>
+        <commons-io.version>2.4</commons-io.version>
     </properties>
 
     <build>
@@ -145,6 +147,11 @@
                 <version>${rest-assured.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito-all.version}</version>
+            </dependency>
 
             <!-- Servlet -->
             <dependency>
@@ -160,6 +167,16 @@
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring-framework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring-framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring-framework.version}</version>
+            </dependency>
 
             <!-- third party -->
             <dependency>
@@ -171,6 +188,11 @@
                 <groupId>commons-validator</groupId>
                 <artifactId>commons-validator</artifactId>
                 <version>${commons-validator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,5 +1,6 @@
-package com.raulexposito.yaus.shortener;
+package com.raulexposito.yaus.service.urlshortener;
 
+import com.raulexposito.yaus.service.exception.InvalidURLException;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class UrlShortener {

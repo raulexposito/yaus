@@ -1,4 +1,4 @@
-package com.raulexposito.yaus.shortener;
+package com.raulexposito.yaus.service.exception;
 
 public class InvalidURLException extends Exception {
 
