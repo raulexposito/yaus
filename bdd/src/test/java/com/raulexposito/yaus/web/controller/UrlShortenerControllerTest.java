@@ -1,5 +1,6 @@
 package com.raulexposito.yaus.web.controller;
 
+import org.apache.http.HttpStatus;
 import org.junit.Test;
 
 import static com.jayway.restassured.RestAssured.expect;
@@ -9,20 +10,31 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class UrlShortenerControllerTest {
 
     @Test
-    public void testCheckProofOfConceptReturns200() {
+    public void testPostMyDomainReturns200andUrlShort() {
         expect().
-            body(equalTo("proof of concept")).
-            statusCode(200).
+            body(equalTo("9cc810cd")).
+            statusCode(HttpStatus.SC_OK).
         when().
             with().
-                parameters("url", "proof of concept").
+                parameters("url", "http://raulexposito.com").
         post("shorten");
     }
 
     @Test
-    public void testCheckWrongMethod405() {
+    public void testPostInvalidURLReturns400() {
         expect().
-            statusCode(405).
+            body(equalTo("The URL 'invalid' is not valid")).
+            statusCode(HttpStatus.SC_BAD_REQUEST).
+        when().
+            with().
+                parameters("url", "invalid").
+        post("shorten");
+    }
+
+    @Test
+    public void testWrongMethodReturns405() {
+        expect().
+            statusCode(HttpStatus.SC_METHOD_NOT_ALLOWED).
         when().
             with().
                 parameters("url", "proof of concept").
