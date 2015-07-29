@@ -22,4 +22,9 @@ public class Visit {
     private String ip;
 
     private String userAgent;
+
+    public Visit (final String ip, final String userAgent) {
+        this.ip = ip;
+        this.userAgent = userAgent;
+    }
 }

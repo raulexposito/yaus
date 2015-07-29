@@ -4,7 +4,7 @@
 
 Execute the next command:
 
-`$ mvn site`
+`$ mvn package site`
 
 Open the next files with a browser:
 

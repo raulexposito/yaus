@@ -1,8 +1,4 @@
-# Web Module
-
-A webserver can be started by using the next command:
-
-`$ mvn jetty:run`
+# Persistence Module
 
 ## Documentation
 
@@ -16,9 +12,4 @@ Open the next files with a browser:
 * `target/site/cpd.html` (it will exists if there is source code copied and pasted)
 * `target/site/jacoco/index.html` to review the code coverage.
 
-## Brief Cheatsheet:
-
-* Shorting the url `http://myurl.com`
-
-`$ curl -X POST -d url='http://myurl.com' localhost:8080/shorten -v`
 
