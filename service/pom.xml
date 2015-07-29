@@ -12,6 +12,13 @@
     </parent>
 
     <dependencies>
+        <!-- sibling projects -->
+        <dependency>
+            <groupId>com.raulexposito.yaus</groupId>
+            <artifactId>yaus-persistence</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- testing -->
         <dependency>
             <groupId>junit</groupId>
