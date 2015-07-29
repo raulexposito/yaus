@@ -7,11 +7,11 @@ import java.util.Map;
 
 public class DefaultUrlCounterStore implements UrlCounterStore {
 
-    private Map<String, List<Visit>> store = new HashMap<>();
+    private final Map<String, List<Visit>> store = new HashMap<>();
 
     @Override
-    public Integer getAmountOfVisitsForShortUrl(final String url) {
-        return getVisitsForUrl(url).size();
+    public Integer getAmountOfVisitsForShortUrl(final String shortUrl) {
+        return getVisitsForShortUrl(shortUrl).size();
     }
 
     @Override
@@ -24,19 +24,19 @@ public class DefaultUrlCounterStore implements UrlCounterStore {
     }
 
     @Override
-    public Integer getAmountOfDistinctUrlsStored() {
+    public Integer getAmountOfDistinctShortUrlsStored() {
         return store.keySet().size();
     }
 
     @Override
-    public void addVisitForShortUrl(final String url, final String ip, final String userAgent) {
-        final List<Visit> visits = getVisitsForUrl(url);
+    public void addVisitForShortUrl(final String shortUrl, final String ip, final String userAgent) {
+        final List<Visit> visits = getVisitsForShortUrl(shortUrl);
         visits.add(new Visit(ip, userAgent));
-        store.put(url, visits);
+        store.put(shortUrl, visits);
     }
 
-    protected List<Visit> getVisitsForUrl (final String url) {
-        final List<Visit> visits = store.get(url);
+    protected List<Visit> getVisitsForShortUrl(final String shortUrl) {
+        final List<Visit> visits = store.get(shortUrl);
         if (visits == null)
             return new ArrayList<>();
         return visits;

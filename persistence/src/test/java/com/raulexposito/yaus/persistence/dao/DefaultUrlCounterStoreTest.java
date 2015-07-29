@@ -15,7 +15,7 @@ public class DefaultUrlCounterStoreTest {
 
     @Test
     public void thereAreNoVisitsForUrlAfterCreating () {
-        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfVisitsForShortUrl("non existent"));
+        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfVisitsForShortUrl("nonexistent"));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class DefaultUrlCounterStoreTest {
 
     @Test
     public void thereAreNoDistinctUrlsAfterCreating () {
-        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfDistinctUrlsStored());
+        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfDistinctShortUrlsStored());
     }
 
     // http://www.sha1-online.com/
@@ -36,7 +36,7 @@ public class DefaultUrlCounterStoreTest {
         urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
         Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfVisitsForShortUrl("9cc810cd"));
         Assert.assertEquals(new Integer(1), urlCounterStore.getTotalAmountOfVisits());
-        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfDistinctUrlsStored());
+        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfDistinctShortUrlsStored());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class DefaultUrlCounterStoreTest {
         urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
         Assert.assertEquals(new Integer(2), urlCounterStore.getAmountOfVisitsForShortUrl("9cc810cd"));
         Assert.assertEquals(new Integer(2), urlCounterStore.getTotalAmountOfVisits());
-        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfDistinctUrlsStored());
+        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfDistinctShortUrlsStored());
     }
 
     @Test
@@ -58,6 +58,6 @@ public class DefaultUrlCounterStoreTest {
     public void thereAreTwoDistinctUrlStored () {
         urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
         urlCounterStore.addVisitForShortUrl("7862655d", "127.0.0.1", "Mozilla/5.0");
-        Assert.assertEquals(new Integer(2), urlCounterStore.getAmountOfDistinctUrlsStored());
+        Assert.assertEquals(new Integer(2), urlCounterStore.getAmountOfDistinctShortUrlsStored());
     }
 }
