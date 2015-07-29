@@ -1,10 +1,12 @@
 package com.raulexposito.yaus.persistence.dao;
 
 import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class DefaultMatcherStore implements UrlMatcherStore {
 
     private final Map<String, String> match = new HashMap<>();

@@ -15,12 +15,12 @@ public class DefaultMatcherStoreTest {
     }
 
     @Test (expected = ShortURLNotFoundException.class)
-    public void thereIsNoUrlForThisShortURL () throws Exception {
+    public void testThereIsNoUrlForThisShortURL () throws ShortURLNotFoundException {
         matcherStore.getUrlFromShortUrl("nonexistent");
     }
 
     @Test
-    public void thereIsOneUrlForThisShortURL () throws Exception {
+    public void testThereIsOneUrlForThisShortURL () throws ShortURLNotFoundException {
         matcherStore.relateShortUrlToUrl("9cc810cd", "http://raulexposito.com");
         Assert.assertEquals("http://raulexposito.com", matcherStore.getUrlFromShortUrl("9cc810cd"));
     }

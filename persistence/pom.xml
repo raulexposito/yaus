@@ -18,6 +18,12 @@
             <artifactId>junit</artifactId>
         </dependency>
 
+        <!-- spring framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
         <!-- third party -->
         <dependency>
             <groupId>org.projectlombok</groupId>
