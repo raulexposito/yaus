@@ -9,6 +9,7 @@
     <name>yaus</name>
 
     <modules>
+        <module>persistence</module>
         <module>service</module>
         <module>web</module>
     </modules>
@@ -55,6 +56,7 @@
         <commons-codec.version>1.10</commons-codec.version>
         <commons-validator.version>1.4.1</commons-validator.version>
         <commons-io.version>2.4</commons-io.version>
+        <lombok.version>1.16.4</lombok.version>
     </properties>
 
     <build>
@@ -193,6 +195,11 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

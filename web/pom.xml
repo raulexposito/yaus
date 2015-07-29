@@ -29,7 +29,6 @@
     </build>
 
     <dependencies>
-
         <!-- sibling projects -->
         <dependency>
             <groupId>com.raulexposito.yaus</groupId>
