@@ -1,0 +1,21 @@
+<configuration>
+
+    <!-- :::::::::::::::::: APPENDERS :::::::::::::::::: -->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%-5level] %d{HH:mm:ss.SSS} %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- :::::::::::::::::: LOGGERS :::::::::::::::::: -->
+
+    <logger name="com.raulexposito.yaus" level="debug">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="org.eclipse.jetty" level="error">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+</configuration>

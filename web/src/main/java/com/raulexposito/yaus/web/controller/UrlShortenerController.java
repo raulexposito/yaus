@@ -2,6 +2,8 @@ package com.raulexposito.yaus.web.controller;
 
 import com.raulexposito.yaus.service.UrlShortenerService;
 import com.raulexposito.yaus.service.exception.InvalidURLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class UrlShortenerController {
 
+    private static final Logger log = LoggerFactory.getLogger(UrlShortenerController.class);
+
     private static final String SHORTEN_URL = "/s/shorten";
 
     @Autowired
@@ -19,6 +23,8 @@ public class UrlShortenerController {
 
     @RequestMapping(value = SHORTEN_URL, method = RequestMethod.POST)
     public @ResponseBody String shortenUrl(@RequestParam("url") final String url) throws InvalidURLException {
-        return urlShortenerService.generate(url);
+        final String shortUrl = urlShortenerService.generate(url);
+        log.info("The short url '{}' has been generated for '{}'", shortUrl, url);
+        return shortUrl;
     }
 }

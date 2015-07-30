@@ -1,5 +1,7 @@
 package com.raulexposito.yaus.persistence.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +10,8 @@ import java.util.Map;
 
 @Repository
 public class DefaultUrlCounterStore implements UrlCounterStore {
+
+    private static final Logger log = LoggerFactory.getLogger(DefaultUrlCounterStore.class);
 
     private final Map<String, List<Visit>> store = new HashMap<>();
 
@@ -35,6 +39,7 @@ public class DefaultUrlCounterStore implements UrlCounterStore {
         final List<Visit> visits = getVisitsForShortUrl(shortUrl);
         visits.add(new Visit(ip, userAgent));
         store.put(shortUrl, visits);
+        log.debug ("A new visit has been added for short url '{}' from the ip address '{}' and the user-agent '{}'", shortUrl, ip, userAgent);
     }
 
     @Override
