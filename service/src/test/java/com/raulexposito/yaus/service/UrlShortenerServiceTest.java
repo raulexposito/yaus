@@ -55,7 +55,6 @@ public class UrlShortenerServiceTest {
         Assert.assertEquals("http://raulexposito.com", urlMatcherStore.getUrlFromShortUrl("9cc810cd"));
     }
 
-
     @Test
     // http://www.sha1-online.com/
     // http://raulexposito.com -> 9cc810cdab40aae66568bcb2a0397a0ceb50f9b1

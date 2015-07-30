@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class UrlShortenerController {
 
-    private static final String SHORTEN_URL = "/shorten";
+    private static final String SHORTEN_URL = "/s/shorten";
 
     @Autowired
     private UrlShortenerService urlShortenerService;

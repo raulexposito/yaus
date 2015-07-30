@@ -1,5 +1,6 @@
 package com.raulexposito.yaus.web.controller.util;
 
+import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
 import com.raulexposito.yaus.service.exception.InvalidURLException;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpStatus;
@@ -13,9 +14,17 @@ import java.io.IOException;
 public class ExceptionControllerAdvice {
 
     @ExceptionHandler(InvalidURLException.class)
-    public void invalidURLException(Exception exception, HttpServletResponse response) throws IOException{
-        int status = HttpStatus.BAD_REQUEST.value();
-        response.setStatus(status);
+    public void invalidURLException(Exception exception, HttpServletResponse response) throws IOException {
+        writeMessageToOutputstreamWithStatus(HttpStatus.BAD_REQUEST, exception, response);
+    }
+
+    @ExceptionHandler(ShortURLNotFoundException.class)
+    public void shortURLNotFoundException(Exception exception, HttpServletResponse response) throws IOException {
+        writeMessageToOutputstreamWithStatus(HttpStatus.NOT_FOUND, exception, response);
+    }
+
+    private void writeMessageToOutputstreamWithStatus (HttpStatus status, Exception exception, HttpServletResponse response) throws IOException {
+        response.setStatus(status.value());
         IOUtils.write(exception.getMessage(), response.getOutputStream());
     }
 }

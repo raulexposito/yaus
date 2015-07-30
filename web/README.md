@@ -18,7 +18,8 @@ Open the next files with a browser:
 
 ## Brief Cheatsheet:
 
-* Shorting the url `http://myurl.com`
+* Shorting the url `http://raulexposito.com`
 
-`$ curl -X POST -d url='http://myurl.com' localhost:8080/shorten -v`
+`$ curl -X POST -d url='http://raulexposito.com' localhost:8080/s/shorten -v`
+`$ curl localhost:8080/9cc810cd -v`
 

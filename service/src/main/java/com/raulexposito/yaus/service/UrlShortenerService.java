@@ -1,6 +1,7 @@
 package com.raulexposito.yaus.service;
 
 import com.raulexposito.yaus.persistence.dao.UrlMatcherStore;
+import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
 import com.raulexposito.yaus.service.exception.InvalidURLException;
 import com.raulexposito.yaus.service.urlshortener.UrlShortener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,9 @@ public class UrlShortenerService {
         final String shortUrl = urlShortener.generate(url);
         urlMatcherStore.relateShortUrlToUrl(shortUrl, url);
         return shortUrl;
+    }
+
+    public String getUrlFromShortUrl (final String shortUrl) throws ShortURLNotFoundException {
+        return urlMatcherStore.getUrlFromShortUrl(shortUrl);
     }
 }

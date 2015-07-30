@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.joda.time.LocalDateTime;
 
 @Getter
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class Visit {
 
     private Integer year;

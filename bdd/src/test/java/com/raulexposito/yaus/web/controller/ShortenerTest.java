@@ -7,17 +7,17 @@ import static com.jayway.restassured.RestAssured.expect;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 // http://www.hascode.com/2011/10/testing-restful-web-services-made-easy-using-the-rest-assured-framework/
-public class UrlShortenerControllerTest {
+public class ShortenerTest {
 
     @Test
-    public void testPostMyDomainReturns200andUrlShort() {
+    public void testPostMyDomainReturns200andTheShortUrl() {
         expect().
             body(equalTo("9cc810cd")).
             statusCode(HttpStatus.SC_OK).
         when().
             with().
                 parameters("url", "http://raulexposito.com").
-        post("shorten");
+        post("s/shorten");
     }
 
     @Test
@@ -28,7 +28,7 @@ public class UrlShortenerControllerTest {
         when().
             with().
                 parameters("url", "invalid").
-        post("shorten");
+        post("s/shorten");
     }
 
     @Test
@@ -37,7 +37,7 @@ public class UrlShortenerControllerTest {
             statusCode(HttpStatus.SC_METHOD_NOT_ALLOWED).
         when().
             with().
-                parameters("url", "proof of concept").
-        get("shorten");
+                parameters("url", "using GET method instead of POST").
+        get("s/shorten");
     }
 }
