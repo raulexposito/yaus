@@ -7,12 +7,12 @@ import static com.jayway.restassured.RestAssured.expect;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 // http://www.hascode.com/2011/10/testing-restful-web-services-made-easy-using-the-rest-assured-framework/
-public class ShortenerTest {
+public class ShortenerTest extends AbstractTestController {
 
     @Test
     public void testPostMyDomainReturns200andTheShortUrl() {
         expect().
-            body(equalTo("9cc810cd")).
+            body(equalTo(DOMAIN + "9cc810cd")).
             statusCode(HttpStatus.SC_OK).
         when().
             with().

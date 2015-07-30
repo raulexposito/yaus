@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UrlShortenerService {
 
+    private static final String DOMAIN = "http://localhost:8080/";
+
     @Autowired
     private UrlMatcherStore urlMatcherStore;
 
@@ -22,10 +24,14 @@ public class UrlShortenerService {
     public String generate (final String url) throws InvalidURLException {
         final String shortUrl = urlShortener.generate(url);
         urlMatcherStore.relateShortUrlToUrl(shortUrl, url);
-        return shortUrl;
+        return getDomain() + shortUrl;
     }
 
     public String getUrlFromShortUrl (final String shortUrl) throws ShortURLNotFoundException {
         return urlMatcherStore.getUrlFromShortUrl(shortUrl);
+    }
+
+    public String getDomain() {
+        return DOMAIN;
     }
 }

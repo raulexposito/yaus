@@ -16,10 +16,32 @@ Open the next files with a browser:
 * `target/site/cpd.html` (it will exists if there is source code copied and pasted)
 * `target/site/jacoco/index.html` to review the code coverage.
 
-## Brief Cheatsheet:
+## REST API:
 
 * Shorting the url `http://raulexposito.com`
 
 `$ curl -X POST -d url='http://raulexposito.com' localhost:8080/s/shorten -v`
+
+* Using the short URL:
+
 `$ curl localhost:8080/9cc810cd -v`
 
+* Gathering the amount of visits for the short URL:
+
+`$ curl localhost:8080/s/amount/9cc810cd -v`
+
+* Gathering the visits for the short URL:
+
+`$ curl localhost:8080/s/visits/9cc810cd -v`
+
+* Gathering the amount of visits:
+
+`$ curl localhost:8080/s/amount/visits -v`
+
+* Gathering the amount of short URLs:
+
+`$ curl localhost:8080/s/amount/shorturls -v`
+
+* Gathering the amount of visits per short URLs:
+
+`$ curl localhost:8080/s/amount -v`
