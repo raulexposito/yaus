@@ -29,14 +29,14 @@ public class UrlShortenerService {
         log.debug("A short url has been requested for the url '{}'", url);
         final String shortUrl = urlShortener.generate(url);
         urlMatcherStore.relateShortUrlToUrl(shortUrl, url);
-        return getDomain() + shortUrl;
+        return generateTheShortUrlWithJustTheHash(shortUrl);
     }
 
     public String getUrlFromShortUrl (final String shortUrl) throws ShortURLNotFoundException {
         return urlMatcherStore.getUrlFromShortUrl(shortUrl);
     }
 
-    public String getDomain() {
-        return DOMAIN;
+    public String generateTheShortUrlWithJustTheHash (final String hash) {
+        return DOMAIN + hash;
     }
 }

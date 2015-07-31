@@ -24,7 +24,7 @@ public class ShortUrlRedirectController {
     @Autowired
     private UrlShortenerService urlShortenerService;
 
-    @RequestMapping(value = "/{shortUrl}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{shortUrl:[0-9|a-f]{8}}", method = RequestMethod.GET)
     public String redirect(@PathVariable("shortUrl") String shortUrl, final HttpServletRequest request) throws ShortURLNotFoundException {
         visitingService.addVisit(shortUrl, request.getRemoteAddr(), request.getHeader("user-agent"));
         final String url = urlShortenerService.getUrlFromShortUrl(shortUrl);

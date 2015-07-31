@@ -25,12 +25,12 @@ this module uses the main `yaus` project (of type `pom`) as a parent.
 
 * Execute only the short url generation tests:
 
-`mvn test -Dtest=ShortnerTest`
+`$ mvn test -Dtest=ShortnerTest`
 
 * Execute only the redirection tests:
 
-`mvn test -Dtest=RedirectTest`
+`$ mvn test -Dtest=RedirectTest`
 
 * Execute only the visiting tests:
 
-`mvn test -Dtest=VisitingTest`
+`$ mvn test -Dtest=VisitingTest`

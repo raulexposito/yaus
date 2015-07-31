@@ -36,8 +36,8 @@ public class UrlShortenerServiceTest {
     public void testShortUrlSuccessfullyGenerated() throws InvalidURLException {
         urlShortenerService.setUrlShortener(UrlShortenerMock);
         when(UrlShortenerMock.generate("whatever")).thenReturn("1234");
-        Assert.assertEquals("The (limited) hash of 'whatever' must be '" + urlShortenerService.getDomain() + "1234'",
-                urlShortenerService.getDomain() + "1234",
+        Assert.assertEquals("The (limited) hash of 'whatever' must be '" + urlShortenerService.generateTheShortUrlWithJustTheHash("1234") + "'",
+                urlShortenerService.generateTheShortUrlWithJustTheHash("1234"),
                 urlShortenerService.generate("whatever"));
     }
 
@@ -52,7 +52,7 @@ public class UrlShortenerServiceTest {
     // http://www.sha1-online.com/
     // http://raulexposito.com -> 9cc810cdab40aae66568bcb2a0397a0ceb50f9b1
     public void tesUrlAndShortUrlAreNotRelatedUntilShortUrlIsCreated() throws ShortURLNotFoundException {
-        Assert.assertEquals("http://raulexposito.com", urlMatcherStore.getUrlFromShortUrl(urlShortenerService.getDomain() + "9cc810cd"));
+        Assert.assertEquals("http://raulexposito.com", urlMatcherStore.getUrlFromShortUrl(urlShortenerService.generateTheShortUrlWithJustTheHash("9cc810cd")));
     }
 
     @Test

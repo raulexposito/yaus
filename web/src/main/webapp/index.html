@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yet Another URL Shortener</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css">
+    <link rel="stylesheet" href="css/jumbotron-narrow.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="https://github.com/raulexposito/yaus/" target="_blank">GitHub</a></li>
+                    <li role="presentation"><a href="http://raulexposito.com/" target="_blank">Author</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Yet Another URL Shortener</h3>
+        </div>
+
+        <div class="jumbotron">
+            <input type="text" class="form-control" placeholder="write the URL here..." aria-describedby="basic-addon2">
+            <br/>
+            <p><a class="btn btn-lg btn-success" href="#" role="button">Short it!</a></p>
+        </div>
+
+        <div class="row marketing centered">
+            <div class="col-lg-6">
+                <h1 class="visits">...</h1>
+            </div>
+
+            <div class="col-lg-6">
+                <h1 class="urls-shorted">...</h1>
+            </div>
+        </div>
+
+        <div class="row marketing">
+            <div class="col-lg-12">
+                <div id="chart">
+                  <svg></svg>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; <a href="http://raulexposito.com/" target="_blank">Raúl Expósito</a></p>
+        </footer>
+
+    </div> <!-- /container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            // visits
+            $.ajax({
+                url: "s/amount/visits",
+                success: function(data) {
+                    $(".visits").html(data + " visits");
+                }
+            });
+
+            // urls shorted
+            $.ajax({
+                url: "s/amount/shorturls",
+                success: function(data) {
+                    $(".urls-shorted").html(data + " URLs shorted");
+                }
+            });
+
+            // amount of visits per url
+            $.getJSON("s/amount", function (json) {
+                nv.addGraph(function() {
+                  var chart = nv.models.pieChart()
+                      .x(function(d) { return d.url })
+                      .y(function(d) { return d.count })
+                      .showLabels(true)     //Display pie labels
+                      .labelThreshold(.05)  //Configure the minimum slice size for labels to show up
+                      .labelType("percent") //Configure what type of data to show in the label. Can be "key", "value" or "percent"
+                      .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
+                      .donutRatio(0.35)     //Configure how big you want the donut hole size to be.
+                      ;
+
+                    d3.select("#chart svg")
+                        .datum(json)
+                        .transition().duration(350)
+                        .call(chart);
+
+                      return chart;
+                });
+
+            });
+        });
+    </script>
+</body>
+</html>
