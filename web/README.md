@@ -20,7 +20,7 @@ Open the next files with a browser:
 
 * Shorting the url `http://raulexposito.com`
 
-`$ curl -X POST -d url='http://raulexposito.com' localhost:8080/s/shorten -v`
+`$ curl -X POST -d url='http://raulexposito.com' localhost:8080/s/shortener -v`
 
 * Using the short URL:
 

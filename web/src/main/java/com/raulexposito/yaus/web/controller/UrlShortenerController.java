@@ -16,13 +16,13 @@ public class UrlShortenerController {
 
     private static final Logger log = LoggerFactory.getLogger(UrlShortenerController.class);
 
-    private static final String SHORTEN_URL = "/s/shorten";
+    private static final String SHORTENER_URL = "/s/shortener";
 
     @Autowired
     private UrlShortenerService urlShortenerService;
 
-    @RequestMapping(value = SHORTEN_URL, method = RequestMethod.POST)
-    public @ResponseBody String shortenUrl(@RequestParam("url") final String url) throws InvalidURLException {
+    @RequestMapping(value = SHORTENER_URL, method = RequestMethod.POST)
+    public @ResponseBody String shortenerUrl(@RequestParam("url") final String url) throws InvalidURLException {
         final String shortUrl = urlShortenerService.generate(url);
         log.info("The short url '{}' has been generated for '{}'", shortUrl, url);
         return shortUrl;

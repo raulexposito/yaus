@@ -22,7 +22,7 @@ public abstract class AbstractTestController {
 
 	protected String createShortUrlForUrl (final String url) throws IOException {
         final CloseableHttpClient client = HttpClients.createDefault();
-        final HttpPost post = new HttpPost(DOMAIN + "/s/shorten");
+        final HttpPost post = new HttpPost(DOMAIN + "/s/shortener");
         final List<NameValuePair> nameValuePairs = new ArrayList<>(1);
         nameValuePairs.add(new BasicNameValuePair("url", url));
         post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
