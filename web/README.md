@@ -20,7 +20,7 @@ Open the next files with a browser:
 
 * Shorting the url `http://raulexposito.com`
 
-`$ curl -X POST -d url='http://raulexposito.com' localhost:8080/s/shortener -v`
+`$ curl -X POST -d url='http://raulexposito.com' localhost:8080/shortener -v`
 
 * Using the short URL:
 
@@ -28,20 +28,20 @@ Open the next files with a browser:
 
 * Gathering the amount of visits for the short URL:
 
-`$ curl localhost:8080/s/amount/9cc810cd -v`
+`$ curl localhost:8080/amount/9cc810cd -v`
 
-* Gathering the visits for the short URL:
+* Gathering the info about the visits for the short URL:
 
-`$ curl localhost:8080/s/visits/9cc810cd -v`
+`$ curl localhost:8080/visits/9cc810cd -v`
 
 * Gathering the amount of visits:
 
-`$ curl localhost:8080/s/amount/visits -v`
+`$ curl localhost:8080/amount/visits -v`
 
 * Gathering the amount of hashes:
 
-`$ curl localhost:8080/s/amount/hashes -v`
+`$ curl localhost:8080/amount/hashes -v`
 
-* Gathering the amount of visits per short URLs:
+* Gathering the amount of visits per short URLs in a JSON notation:
 
-`$ curl localhost:8080/s/amount -v`
+`$ curl localhost:8080/amount -v`

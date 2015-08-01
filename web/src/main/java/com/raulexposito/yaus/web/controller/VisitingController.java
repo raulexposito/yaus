@@ -30,35 +30,35 @@ public class VisitingController {
     @Autowired
     private UrlShortenerService urlShortenerService;
 
-    @RequestMapping(value = "/s/visits/{hash}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/visits/{hash}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Visit> visitsForHash(@PathVariable("hash") String hash) throws HashNotFoundException {
         final List<Visit> visits = visitingService.getVisitsForHash(hash);
         log.info("The visits for the short url '{}' have been requested with '{}' items", hash, visits.size());
         return visits;
     }
 
-    @RequestMapping(value = "/s/amount/{hash}", method = RequestMethod.GET)
+    @RequestMapping(value = "/amount/{hash}", method = RequestMethod.GET)
     public @ResponseBody Integer amountForHash(@PathVariable("hash") String hash) throws HashNotFoundException {
         final Integer amount = visitingService.getAmountOfVisitsForHash(hash);
         log.info("There are '{}' visits for the hash '{}'", amount, hash);
         return amount;
     }
 
-    @RequestMapping(value = "/s/amount/visits", method = RequestMethod.GET)
+    @RequestMapping(value = "/amount/visits", method = RequestMethod.GET)
     public @ResponseBody Integer amountVisits() throws HashNotFoundException {
         final Integer amount = visitingService.getTotalAmountOfVisits();
         log.info("There are '{}' visits in total", amount);
         return amount;
     }
 
-    @RequestMapping(value = "/s/amount/hashes", method = RequestMethod.GET)
+    @RequestMapping(value = "/amount/hashes", method = RequestMethod.GET)
     public @ResponseBody Integer amountHashes() throws HashNotFoundException {
         final Integer amount = visitingService.getAmountOfDistinctHashesStored();
         log.info("There are '{}' hashes in total", amount);
         return amount;
     }
 
-    @RequestMapping(value = "/s/amount", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/amount", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody List<Relation> amount() throws HashNotFoundException {
         final Map<String, Integer> amount = visitingService.getAmountOfVisitsPerHash();
         final List<Relation> relations = generateRelations(amount);

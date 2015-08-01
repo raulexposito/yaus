@@ -17,7 +17,7 @@ public class ShortenerTest extends AbstractTestController {
         when().
             with().
                 parameters("url", "http://raulexposito.com").
-        post("s/shortener");
+        post("shortener");
     }
 
     @Test
@@ -28,7 +28,7 @@ public class ShortenerTest extends AbstractTestController {
         when().
             with().
                 parameters("url", "invalid").
-        post("s/shortener");
+        post("shortener");
     }
 
     @Test
@@ -38,6 +38,6 @@ public class ShortenerTest extends AbstractTestController {
         when().
             with().
                 parameters("url", "using GET method instead of POST").
-        get("s/shortener");
+        get("shortener");
     }
 }

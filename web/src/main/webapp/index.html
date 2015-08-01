@@ -69,7 +69,7 @@
 
             // visits
             $.ajax({
-                url: "s/amount/visits",
+                url: "amount/visits",
                 success: function(data) {
                     $(".visits").html(data + " visits");
                 }
@@ -77,14 +77,14 @@
 
             // urls shorted
             $.ajax({
-                url: "s/amount/hashes",
+                url: "amount/hashes",
                 success: function(data) {
                     $(".urls-shorted").html(data + " URLs visited");
                 }
             });
 
             // amount of visits per url
-            $.getJSON("s/amount", function (json) {
+            $.getJSON("amount", function (json) {
                 nv.addGraph(function() {
                   var chart = nv.models.pieChart()
                       .x(function(d) { return d.url })

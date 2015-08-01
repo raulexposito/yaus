@@ -16,7 +16,7 @@ public class UrlShortenerController {
 
     private static final Logger log = LoggerFactory.getLogger(UrlShortenerController.class);
 
-    private static final String SHORTENER_URL = "/s/shortener";
+    private static final String SHORTENER_URL = "/shortener";
 
     @Autowired
     private UrlShortenerService urlShortenerService;

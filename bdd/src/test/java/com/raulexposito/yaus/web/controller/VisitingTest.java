@@ -19,27 +19,27 @@ public class VisitingTest extends AbstractTestController {
         expect().
             body(containsString("1")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount/9cc810cd");
+        get(DOMAIN + "/amount/9cc810cd");
 
         expect().
             body(containsString("1")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount/visits");
+        get(DOMAIN + "/amount/visits");
 
         expect().
             body(containsString("1")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount/hashes");
+        get(DOMAIN + "/amount/hashes");
 
         expect().
             body(containsString("userAgent")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/visits/9cc810cd");
+        get(DOMAIN + "/visits/9cc810cd");
 
         expect().
             body(containsString("9cc810cd")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount");
+        get(DOMAIN + "/amount");
     }
 
     @Test
@@ -52,26 +52,26 @@ public class VisitingTest extends AbstractTestController {
         expect().
             body(containsString("2")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount/60453e41");
+        get(DOMAIN + "/amount/60453e41");
 
         expect().
             body(containsString("3")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount/visits");
+        get(DOMAIN + "/amount/visits");
 
         expect().
             body(containsString("2")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount/hashes");
+        get(DOMAIN + "/amount/hashes");
 
         expect().
             body(containsString("userAgent")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/visits/60453e41");
+        get(DOMAIN + "/visits/60453e41");
 
         expect().
             body(containsString("60453e41")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount");
+        get(DOMAIN + "/amount");
     }
 }
