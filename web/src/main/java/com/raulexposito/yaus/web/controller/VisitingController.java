@@ -72,6 +72,7 @@ public class VisitingController {
             relations.add(new Relation(
                     urlShortenerService.generateTheShortUrlFromTheHash(hash),
                     urlShortenerService.getUrlFromHash(hash),
+                    hash,
                     amount.get(hash)));
         }
         return relations;
@@ -82,6 +83,7 @@ public class VisitingController {
     class Relation {
         private String shortUrl;
         private String url;
+        private String hash;
         private Integer count;
     }
 }
