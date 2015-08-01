@@ -25,7 +25,9 @@ populate_data = function () {
     $.ajax({
         url: "amount/visits",
         success: function(data) {
-            $(".visits").html(data + " visits");
+            if (data != 0) {
+                $(".visits").html(data + " visits");
+            }
         }
     });
 
@@ -33,7 +35,9 @@ populate_data = function () {
     $.ajax({
         url: "amount/hashes",
         success: function(data) {
-            $(".urls-shorted").html(data + " URLs visited");
+            if (data != 0) {
+               $(".urls-shorted").html(data + " URLs visited");
+            }
         }
     });
 
