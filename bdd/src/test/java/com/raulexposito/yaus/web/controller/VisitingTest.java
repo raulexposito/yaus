@@ -29,7 +29,7 @@ public class VisitingTest extends AbstractTestController {
         expect().
             body(containsString("1")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount/shorturls");
+        get(DOMAIN + "/s/amount/hashes");
 
         expect().
             body(containsString("userAgent")).
@@ -62,7 +62,7 @@ public class VisitingTest extends AbstractTestController {
         expect().
             body(containsString("2")).
             statusCode(HttpStatus.SC_OK).
-        get(DOMAIN + "/s/amount/shorturls");
+        get(DOMAIN + "/s/amount/hashes");
 
         expect().
             body(containsString("userAgent")).

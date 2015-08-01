@@ -1,7 +1,7 @@
 package com.raulexposito.yaus.web.controller;
 
 import com.raulexposito.yaus.persistence.dao.Visit;
-import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
+import com.raulexposito.yaus.persistence.exception.HashNotFoundException;
 import com.raulexposito.yaus.service.UrlShortenerService;
 import com.raulexposito.yaus.service.VisitingService;
 import lombok.AllArgsConstructor;
@@ -30,49 +30,49 @@ public class VisitingController {
     @Autowired
     private UrlShortenerService urlShortenerService;
 
-    @RequestMapping(value = "/s/visits/{shortUrl}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody List<Visit> visitsForShortUrl(@PathVariable("shortUrl") String shortUrl) throws ShortURLNotFoundException {
-        final List<Visit> visits = visitingService.getVisitsForShortUrl(shortUrl);
-        log.info("The visits for the short url '{}' have been requested with '{}' items", shortUrl, visits.size());
+    @RequestMapping(value = "/s/visits/{hash}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<Visit> visitsForHash(@PathVariable("hash") String hash) throws HashNotFoundException {
+        final List<Visit> visits = visitingService.getVisitsForHash(hash);
+        log.info("The visits for the short url '{}' have been requested with '{}' items", hash, visits.size());
         return visits;
     }
 
-    @RequestMapping(value = "/s/amount/{shortUrl}", method = RequestMethod.GET)
-    public @ResponseBody Integer amountForShortUrl(@PathVariable("shortUrl") String shortUrl) throws ShortURLNotFoundException {
-        final Integer amount = visitingService.getAmountOfVisitsForShortUrl(shortUrl);
-        log.info("There are '{}' visits for the short url '{}'", amount, shortUrl);
+    @RequestMapping(value = "/s/amount/{hash}", method = RequestMethod.GET)
+    public @ResponseBody Integer amountForHash(@PathVariable("hash") String hash) throws HashNotFoundException {
+        final Integer amount = visitingService.getAmountOfVisitsForHash(hash);
+        log.info("There are '{}' visits for the hash '{}'", amount, hash);
         return amount;
     }
 
     @RequestMapping(value = "/s/amount/visits", method = RequestMethod.GET)
-    public @ResponseBody Integer amountVisits() throws ShortURLNotFoundException {
+    public @ResponseBody Integer amountVisits() throws HashNotFoundException {
         final Integer amount = visitingService.getTotalAmountOfVisits();
         log.info("There are '{}' visits in total", amount);
         return amount;
     }
 
-    @RequestMapping(value = "/s/amount/shorturls", method = RequestMethod.GET)
-    public @ResponseBody Integer amountShortUrls() throws ShortURLNotFoundException {
-        final Integer amount = visitingService.getAmountOfDistinctShortUrlsStored();
-        log.info("There are '{}' short urls in total", amount);
+    @RequestMapping(value = "/s/amount/hashes", method = RequestMethod.GET)
+    public @ResponseBody Integer amountHashes() throws HashNotFoundException {
+        final Integer amount = visitingService.getAmountOfDistinctHashesStored();
+        log.info("There are '{}' hashes in total", amount);
         return amount;
     }
 
     @RequestMapping(value = "/s/amount", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody List<Relation> amount() throws ShortURLNotFoundException {
-        final Map<String, Integer> amount = visitingService.getAmountOfVisitsPerShortUrl();
+    public @ResponseBody List<Relation> amount() throws HashNotFoundException {
+        final Map<String, Integer> amount = visitingService.getAmountOfVisitsPerHash();
         final List<Relation> relations = generateRelations(amount);
         log.info("The relation between the short urls and the amount of visits have been requested with '{}' short urls", relations.size());
         return relations;
     }
 
-    private List<Relation> generateRelations (final Map<String, Integer> amount) throws ShortURLNotFoundException {
+    private List<Relation> generateRelations (final Map<String, Integer> amount) throws HashNotFoundException {
         final List<Relation> relations = new ArrayList<>(amount.size());
-        for (String shortUrl: amount.keySet()) {
+        for (String hash: amount.keySet()) {
             relations.add(new Relation(
-                    urlShortenerService.generateTheShortUrlWithJustTheHash(shortUrl),
-                    urlShortenerService.getUrlFromShortUrl(shortUrl),
-                    amount.get(shortUrl)));
+                    urlShortenerService.generateTheShortUrlFromTheHash(hash),
+                    urlShortenerService.getUrlFromHash(hash),
+                    amount.get(hash)));
         }
         return relations;
     }

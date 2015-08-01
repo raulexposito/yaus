@@ -3,7 +3,7 @@ package com.raulexposito.yaus.service.urlshortener;
 import com.raulexposito.yaus.service.exception.InvalidURLException;
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class UrlShortener {
+public class HashGenerator {
 
 	private static final int BEGINNING = 0;
 	static final int MAX_LENGTH = 8;

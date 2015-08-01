@@ -1,6 +1,6 @@
 package com.raulexposito.yaus.web.controller.util;
 
-import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
+import com.raulexposito.yaus.persistence.exception.HashNotFoundException;
 import com.raulexposito.yaus.service.exception.InvalidURLException;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpStatus;
@@ -18,8 +18,8 @@ public class ExceptionControllerAdvice {
         writeMessageToOutputstreamWithStatus(HttpStatus.BAD_REQUEST, exception, response);
     }
 
-    @ExceptionHandler(ShortURLNotFoundException.class)
-    public void shortURLNotFoundException(Exception exception, HttpServletResponse response) throws IOException {
+    @ExceptionHandler(HashNotFoundException.class)
+    public void hashNotFoundException(Exception exception, HttpServletResponse response) throws IOException {
         writeMessageToOutputstreamWithStatus(HttpStatus.NOT_FOUND, exception, response);
     }
 

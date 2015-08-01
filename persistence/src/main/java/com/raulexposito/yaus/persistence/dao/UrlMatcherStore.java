@@ -1,6 +1,6 @@
 package com.raulexposito.yaus.persistence.dao;
 
-import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
+import com.raulexposito.yaus.persistence.exception.HashNotFoundException;
 
 /**
  * The purpose of this class is just to relate the short urls to the original
@@ -9,24 +9,23 @@ import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
 public interface UrlMatcherStore {
 
 	/**
-	 * Relates the short url to the original one
+	 * Relates the hash to the original url
 	 * 
-	 * @param shortUrl
-	 *            the short url
+	 * @param hash
+	 *            the hash
 	 * @param url
-	 *            the original one
+	 *            the url
 	 */
-	void relateShortUrlToUrl(final String shortUrl, final String url);
+	void relateHashToUrl(final String hash, final String url);
 
 	/**
-	 * Returns the original url related to the short url
+	 * Returns the url related to hash
 	 * 
-	 * @param shortUrl
-	 *            the short url
-	 * @return the original url
-	 * @throws ShortURLNotFoundException
+	 * @param hash
+	 *            the hash
+	 * @return the url
+	 * @throws HashNotFoundException
 	 *             if the short url cannot be found
 	 */
-	String getUrlFromShortUrl(final String shortUrl)
-			throws ShortURLNotFoundException;
+	String getUrlFromHash(final String hash) throws HashNotFoundException;
 }

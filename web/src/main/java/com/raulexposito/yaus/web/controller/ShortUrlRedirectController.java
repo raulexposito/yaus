@@ -1,6 +1,6 @@
 package com.raulexposito.yaus.web.controller;
 
-import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
+import com.raulexposito.yaus.persistence.exception.HashNotFoundException;
 import com.raulexposito.yaus.service.UrlShortenerService;
 import com.raulexposito.yaus.service.VisitingService;
 import org.slf4j.Logger;
@@ -24,11 +24,11 @@ public class ShortUrlRedirectController {
     @Autowired
     private UrlShortenerService urlShortenerService;
 
-    @RequestMapping(value = "/{shortUrl:[0-9|a-f]{8}}", method = RequestMethod.GET)
-    public String redirect(@PathVariable("shortUrl") String shortUrl, final HttpServletRequest request) throws ShortURLNotFoundException {
-        visitingService.addVisit(shortUrl, request.getRemoteAddr(), request.getHeader("user-agent"));
-        final String url = urlShortenerService.getUrlFromShortUrl(shortUrl);
-        log.info("Redirecting from '{}' to '{}'", shortUrl, url);
+    @RequestMapping(value = "/{hash:[0-9|a-f]{8}}", method = RequestMethod.GET)
+    public String redirect(@PathVariable("hash") String hash, final HttpServletRequest request) throws HashNotFoundException {
+        visitingService.addVisit(hash, request.getRemoteAddr(), request.getHeader("user-agent"));
+        final String url = urlShortenerService.getUrlFromHash(hash);
+        log.info("Redirecting from hash '{}' to '{}'", hash, url);
         return "redirect:" + url;
     }
 }

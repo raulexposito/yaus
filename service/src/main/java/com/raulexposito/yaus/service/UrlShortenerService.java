@@ -1,9 +1,9 @@
 package com.raulexposito.yaus.service;
 
 import com.raulexposito.yaus.persistence.dao.UrlMatcherStore;
-import com.raulexposito.yaus.persistence.exception.ShortURLNotFoundException;
+import com.raulexposito.yaus.persistence.exception.HashNotFoundException;
 import com.raulexposito.yaus.service.exception.InvalidURLException;
-import com.raulexposito.yaus.service.urlshortener.UrlShortener;
+import com.raulexposito.yaus.service.urlshortener.HashGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +19,24 @@ public class UrlShortenerService {
     @Autowired
     private UrlMatcherStore urlMatcherStore;
 
-    private UrlShortener urlShortener = new UrlShortener();
+    private HashGenerator hashGenerator = new HashGenerator();
 
-    void setUrlShortener (final UrlShortener urlShortener) {
-        this.urlShortener = urlShortener;
+    void setHashGenerator(final HashGenerator hashGenerator) {
+        this.hashGenerator = hashGenerator;
     }
 
     public String generate (final String url) throws InvalidURLException {
         log.debug("A short url has been requested for the url '{}'", url);
-        final String shortUrl = urlShortener.generate(url);
-        urlMatcherStore.relateShortUrlToUrl(shortUrl, url);
-        return generateTheShortUrlWithJustTheHash(shortUrl);
+        final String hash = hashGenerator.generate(url);
+        urlMatcherStore.relateHashToUrl(hash, url);
+        return generateTheShortUrlFromTheHash(hash);
     }
 
-    public String getUrlFromShortUrl (final String shortUrl) throws ShortURLNotFoundException {
-        return urlMatcherStore.getUrlFromShortUrl(shortUrl);
+    public String getUrlFromHash(final String hash) throws HashNotFoundException {
+        return urlMatcherStore.getUrlFromHash(hash);
     }
 
-    public String generateTheShortUrlWithJustTheHash (final String hash) {
+    public String generateTheShortUrlFromTheHash(final String hash) {
         return DOMAIN + hash;
     }
 }

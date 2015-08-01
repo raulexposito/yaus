@@ -17,7 +17,7 @@ public class DefaultUrlCounterStoreTest {
 
     @Test
     public void testThereAreNoVisitsForUrlAfterCreating () {
-        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfVisitsForShortUrl("nonexistent"));
+        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfVisitsForHash("nonexistent"));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class DefaultUrlCounterStoreTest {
 
     @Test
     public void testThereAreNoDistinctUrlsAfterCreating () {
-        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfDistinctShortUrlsStored());
+        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfDistinctHashesStored());
     }
 
     // http://www.sha1-online.com/
@@ -35,40 +35,40 @@ public class DefaultUrlCounterStoreTest {
     // http://testingdomain.com -> 7862655dd0ae9820157ba01b9e300579beb77045
     @Test
     public void testThereIsJustOneVisitAfterAddingJustOneVisit () {
-        urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
-        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfVisitsForShortUrl("9cc810cd"));
+        urlCounterStore.addVisitToHash("9cc810cd", "127.0.0.1", "Mozilla/5.0");
+        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfVisitsForHash("9cc810cd"));
         Assert.assertEquals(new Integer(1), urlCounterStore.getTotalAmountOfVisits());
-        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfDistinctShortUrlsStored());
+        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfDistinctHashesStored());
     }
 
     @Test
-    public void testThereAreTwoVisitsOfTheSameShortUrl () {
-        urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
-        urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
-        Assert.assertEquals(new Integer(2), urlCounterStore.getAmountOfVisitsForShortUrl("9cc810cd"));
+    public void testThereAreTwoVisitsOfTheSameHash() {
+        urlCounterStore.addVisitToHash("9cc810cd", "127.0.0.1", "Mozilla/5.0");
+        urlCounterStore.addVisitToHash("9cc810cd", "127.0.0.1", "Mozilla/5.0");
+        Assert.assertEquals(new Integer(2), urlCounterStore.getAmountOfVisitsForHash("9cc810cd"));
         Assert.assertEquals(new Integer(2), urlCounterStore.getTotalAmountOfVisits());
-        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfDistinctShortUrlsStored());
+        Assert.assertEquals(new Integer(1), urlCounterStore.getAmountOfDistinctHashesStored());
     }
 
     @Test
-    public void testThereAreNoVisitsOfDifferentShortUrl () {
-        urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
-        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfVisitsForShortUrl("7862655d"));
+    public void testThereAreNoVisitsOfDifferentHashes() {
+        urlCounterStore.addVisitToHash("9cc810cd", "127.0.0.1", "Mozilla/5.0");
+        Assert.assertEquals(new Integer(0), urlCounterStore.getAmountOfVisitsForHash("7862655d"));
     }
 
     @Test
     public void testThereAreTwoDistinctUrlStored () {
-        urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
-        urlCounterStore.addVisitForShortUrl("7862655d", "127.0.0.1", "Mozilla/5.0");
-        Assert.assertEquals(new Integer(2), urlCounterStore.getAmountOfDistinctShortUrlsStored());
+        urlCounterStore.addVisitToHash("9cc810cd", "127.0.0.1", "Mozilla/5.0");
+        urlCounterStore.addVisitToHash("7862655d", "127.0.0.1", "Mozilla/5.0");
+        Assert.assertEquals(new Integer(2), urlCounterStore.getAmountOfDistinctHashesStored());
     }
 
     @Test
-    public void testRelationOfShortUrlsAndAmountVisits () {
-        urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
-        urlCounterStore.addVisitForShortUrl("9cc810cd", "127.0.0.1", "Mozilla/5.0");
-        urlCounterStore.addVisitForShortUrl("7862655d", "127.0.0.1", "Mozilla/5.0");
-        final Map<String, Integer> relation = urlCounterStore.getAmountOfVisitsPerShortUrl();
+    public void testRelationOfHashesAndAmountVisits() {
+        urlCounterStore.addVisitToHash("9cc810cd", "127.0.0.1", "Mozilla/5.0");
+        urlCounterStore.addVisitToHash("9cc810cd", "127.0.0.1", "Mozilla/5.0");
+        urlCounterStore.addVisitToHash("7862655d", "127.0.0.1", "Mozilla/5.0");
+        final Map<String, Integer> relation = urlCounterStore.getAmountOfVisitsPerHash();
         Assert.assertEquals(new Integer(2), relation.get("9cc810cd"));
         Assert.assertEquals(new Integer(1), relation.get("7862655d"));
     }

@@ -11,25 +11,25 @@ public interface UrlCounterStore {
 
 	/**
 	 * Adds a new visit to the short url with some metadata
-	 * @param shortUrl the short url
+	 * @param hash the hash
 	 * @param ip the customer IP address
 	 * @param userAgent the customer user agent
 	 */
-	void addVisitForShortUrl(final String shortUrl, final String ip, final String userAgent);
+	void addVisitToHash(final String hash, final String ip, final String userAgent);
 
 	/**
 	 * Returns the visits stored for a short url
-	 * @param shortUrl the short url
+	 * @param hash the hash
 	 * @return a list with the visits stored for a short url
 	 */
-	List<Visit> getVisitsForShortUrl (final String shortUrl);
+	List<Visit> getVisitsForHash(final String hash);
 
 	/**
 	 * Returns the number of visits for a short url given
-	 * @param shortUrl the short url
+	 * @param hash the hash
 	 * @return the number of visits
 	 */
-	Integer getAmountOfVisitsForShortUrl(final String shortUrl);
+	Integer getAmountOfVisitsForHash(final String hash);
 
 	/**
 	 * Returns the total amount of visits
@@ -38,16 +38,16 @@ public interface UrlCounterStore {
 	Integer getTotalAmountOfVisits();
 
 	/**
-	 * Returns the quantity of distinct short urls stored
-	 * @return the quantity of distinct short urls stored
+	 * Returns the quantity of distinct hashes stored
+	 * @return the quantity of distinct hashes stored
 	 */
-	Integer getAmountOfDistinctShortUrlsStored();
+	Integer getAmountOfDistinctHashesStored();
 
 	/**
-	 * Returns a map with a relation between the short urls and the number of visits
+	 * Returns a map with a relation between the hashes and the number of visits
 	 * for each one
-	 * @return a map with a relation between the short urls and the number of visits
+	 * @return a map with a relation between the hashes and the number of visits
 	 * for each one
 	 */
-	Map<String, Integer> getAmountOfVisitsPerShortUrl ();
+	Map<String, Integer> getAmountOfVisitsPerHash();
 }

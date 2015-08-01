@@ -1,13 +1,12 @@
 package com.raulexposito.yaus.service.urlshortener;
 
 import com.raulexposito.yaus.service.exception.InvalidURLException;
-import com.raulexposito.yaus.service.urlshortener.UrlShortener;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UrlShortenerTest {
+public class HashGeneratorTest {
 
-    private UrlShortener urlShortener = new UrlShortener();
+    private HashGenerator hashGenerator = new HashGenerator();
 
     // http://www.sha1-online.com/
     // http://raulexposito.com -> 9cc810cdab40aae66568bcb2a0397a0ceb50f9b1
@@ -16,20 +15,20 @@ public class UrlShortenerTest {
     public void testMyDomainURL() throws InvalidURLException {
         Assert.assertEquals("The (limited) hash of 'http://raulexposito.com' must be '9cc810cd'",
                 "9cc810cd",
-                urlShortener.generate("http://raulexposito.com"));
+                hashGenerator.generate("http://raulexposito.com"));
     }
 
     @Test
     public void testTestingDomainDomainURL() throws InvalidURLException {
         Assert.assertEquals("The (limited) hash of 'http://testingdomain.com' must be '7862655d'",
                 "7862655d",
-                urlShortener.generate("http://testingdomain.com"));
+                hashGenerator.generate("http://testingdomain.com"));
     }
 
     @Test
     public void testHashesHave8CharsLength() throws InvalidURLException {
         Assert.assertEquals("The (limited) hash must have a length of 8 chars",
-                UrlShortener.MAX_LENGTH,
-                urlShortener.generate("http://testingdomain.com").length());
+                HashGenerator.MAX_LENGTH,
+                hashGenerator.generate("http://testingdomain.com").length());
     }
 }

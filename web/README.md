@@ -38,9 +38,9 @@ Open the next files with a browser:
 
 `$ curl localhost:8080/s/amount/visits -v`
 
-* Gathering the amount of short URLs:
+* Gathering the amount of hashes:
 
-`$ curl localhost:8080/s/amount/shorturls -v`
+`$ curl localhost:8080/s/amount/hashes -v`
 
 * Gathering the amount of visits per short URLs:
 
