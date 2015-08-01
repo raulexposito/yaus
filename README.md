@@ -23,7 +23,7 @@ $ git clone https://github.com/raulexposito/yaus.git
 Cloning into 'yaus'...
 ...
 $ cd yaus/
-$ mvn package
+$ mvn install
 $ cd web/
 $ mvn jetty:run
 ```
